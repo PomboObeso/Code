@@ -1,41 +1,81 @@
 #include <stdio.h>
 
-void pombo_programador(int qtd, int lin, int cont, int cont2)
+void printdia(int dia)
 {
-  if(qtd >= 5)
+	printf("O DIA QUE MAIS PRODUZIU: ");
+
+	if(dia == 1)
+	{
+		printf("DOMINGO\n");
+	}
+	else if(dia == 2)
+	{
+		printf("SEGUNDA\n");
+	}
+	else if(dia == 3)
+	{
+		printf("TERÇA\n");
+	}
+	else if(dia == 4)
+	{
+		printf("QUARTA\n");
+	}
+	else if(dia == 5)
+	{
+		printf("QUINTA\n");
+	}
+	else if(dia == 6)
+	{
+		printf("SEXTA\n");
+	}
+	else if(dia == 7)
+	{
+		printf("SÁBADO\n");
+	}
+}
+
+void pombo_programador(int qtd, int lin, int cont, int programas, int linhas, int produto, int dia)
+{
+
+	if(qtd >= 5)
   {
-    cont +=1;
+    programas +=1;
   }
   if(lin >= 100)
   {
-    cont2 += 1;
+    linhas += 1;
   }
-  printf("QUANTIDADE DE DIAS QUE ATINGIU MEDIA DE PROGRAMAS: %d\n",cont);
-  printf("QUANTIDADE DE DIAS QUE ATINGIU MEDIA DE LINHAS: %d\n", cont2);
-}
-
-void pombo_parada(int qtd, int lin, int cont)
-{
+  if(qtd + lin >= produto)
+  {
+    produto = qtd + lin;
+    dia = cont;
+  }
   if(cont == 7)
   {
-    return;
+  
+  printf("QUANTIDADE DE DIAS QUE ATINGIU MEDIA DE PROGRAMAS: %d\n",programas);
+  
+  printf("QUANTIDADE DE DIAS QUE ATINGIU MEDIA DE LINHAS: %d\n", linhas);
+
+  printdia(dia);
+
+  return;
   }
   else
   {
     scanf("%d %d", &qtd, &lin);
-    pombo_parada(qtd,lin, cont + 1);
+
+    pombo_programador(qtd, lin, cont + 1, programas, linhas, produto, dia);
+
+    return;
   }
+
 }
 
 int main()
 {
-  int qtd = 0;
-  int lin = 0;
 
-  scanf("%d %d", &qtd, &lin);
-
-  pombo_parada(qtd,lin,1);
-  pombo_programador(qtd,lin,0,0);
+  pombo_programador(0,0,0,0,0,0,0);
 
   return 0;
 }
