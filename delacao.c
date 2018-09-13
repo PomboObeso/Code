@@ -1,19 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 void delacao()
 {
 	char delator[20];
 	char delatado[20];
 
+	int i = 0;
+
 	int roubo1, trafico1; //delator
 	int roubo2, trafico2; //delatado
 
-	scanf("%s", delator);
-	scanf("%s", delatado);
+	scanf(" %[^\n]s", delator);
+	scanf(" %[^\n]s", delatado);
 
-	if(delator == 'homicidio' && delatado == 'homicidio')
+	for(i; i < 20; i++)
+	{
+		delator[i] = tolower(delator[i]);
+		delatado[i] = tolower(delatado[i]);
+	}
+
+	if(strcmp(delator,"homicidio") && strcmp(delatado,"homicidio"))
 	{
 		printf("Delação concedida.\n");
 	}
